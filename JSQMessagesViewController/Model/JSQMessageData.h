@@ -73,6 +73,13 @@
  */
 - (BOOL)isMediaMessage;
 
+
+/**
+ <#Description#>
+
+ @return <#return value description#>
+ */
+- (NSInteger)buttonCount;
 /**
  *  @return An integer that can be used as a table address in a hash table structure.
  *
@@ -89,6 +96,13 @@
  *  @warning You must not return `nil` from this method.
  */
 - (NSString *)text;
+
+/**
+ *  @return The body attributedText of the message.
+ *
+ *  @warning You must not return `nil` from this method.
+ */
+- (NSMutableAttributedString *)attributedText;
 
 /**
  *  @return The media item of the message.

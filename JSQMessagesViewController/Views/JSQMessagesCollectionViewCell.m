@@ -38,6 +38,13 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
 @property (weak, nonatomic) IBOutlet UIView *messageBubbleContainerView;
 @property (weak, nonatomic) IBOutlet UIImageView *messageBubbleImageView;
 @property (weak, nonatomic) IBOutlet JSQMessagesCellTextView *textView;
+@property (weak, nonatomic) IBOutlet UIButton *contentButton1;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentButton1HeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentButton1TopConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentButton1BottomConstraint;
+
+@property (weak, nonatomic) IBOutlet UIButton *contentButton2;
+@property (weak, nonatomic) IBOutlet UIButton *contentButton3;
 
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 @property (weak, nonatomic) IBOutlet UIView *avatarContainerView;
@@ -119,7 +126,10 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
 
     self.cellTopLabel.textAlignment = NSTextAlignmentCenter;
     self.cellTopLabel.font = [UIFont boldSystemFontOfSize:12.0f];
-    self.cellTopLabel.textColor = [UIColor lightGrayColor];
+    self.cellTopLabel.textColor = [UIColor colorWithRed:102/255.0 green:102/255.0 blue:102/255.0 alpha:1];
+//    [UIColor lightGrayColor];
+    
+    self.textView.delegate = self;
 
     self.messageBubbleTopLabel.font = [UIFont systemFontOfSize:12.0f];
     self.messageBubbleTopLabel.textColor = [UIColor lightGrayColor];
@@ -141,8 +151,13 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
     _cellBottomLabel = nil;
 
     _textView = nil;
+    _textView.delegate = nil;
     _messageBubbleImageView = nil;
     _mediaView = nil;
+    
+    _contentButton1 = nil;
+    _contentButton2 = nil;
+    _contentButton3 = nil;
 
     _avatarImageView = nil;
 
@@ -163,6 +178,14 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
     self.textView.dataDetectorTypes = UIDataDetectorTypeNone;
     self.textView.text = nil;
     self.textView.attributedText = nil;
+    self.textView.delegate = self;
+    
+    [self.contentButton1 setTitle:@"" forState:UIControlStateNormal];
+    self.contentButton1.hidden = YES;
+    [self.contentButton2 setTitle:@"" forState:UIControlStateNormal];
+    self.contentButton2.hidden = YES;
+    [self.contentButton3 setTitle:@"" forState:UIControlStateNormal];
+    self.contentButton3.hidden = YES;
 
     self.avatarImageView.image = nil;
     self.avatarImageView.highlightedImage = nil;
@@ -189,6 +212,18 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
 
     self.textViewFrameInsets = customAttributes.textViewFrameInsets;
 
+    //是否显示详情按钮
+    //customAttributes.shownContentButton
+    if (customAttributes.shownContentButton) {
+        self.contentButton1HeightConstraint.constant = 22.0f;
+        self.contentButton1TopConstraint.constant    = 6.0f;
+        self.contentButton1BottomConstraint.constant = 11.0f;
+    }else{
+        self.contentButton1HeightConstraint.constant = CGFLOAT_MIN;
+        self.contentButton1TopConstraint.constant    = CGFLOAT_MIN;
+        self.contentButton1BottomConstraint.constant = CGFLOAT_MIN;
+    }
+    
     [self jsq_updateConstraint:self.messageBubbleContainerWidthConstraint
                   withConstant:customAttributes.messageBubbleContainerViewWidth];
 
@@ -389,6 +424,45 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
     }
     
     return NO;
+}
+
+#pragma mark - UITextViewDelegate
+/**
+ textView中超链URL的处理
+ iOS7~iOS10用
+ */
+- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange
+{
+    NSLog(@"李磊---%@",URL);
+    if ([[URL scheme] isEqualToString:@"username"]) {
+        NSString *username = [URL host];
+        // do something with this username
+        // ...
+        return NO;
+    }
+    return YES; // let the system open this URL
+}
+
+/**
+ textView中超链URL的处理
+ iOS10以后用
+ */
+- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange interaction:(UITextItemInteraction)interaction
+{
+    NSLog(@"李磊---%@",URL);
+    if ([[URL scheme] isEqualToString:@"username"]) {
+        NSString *username = [URL host];
+        // do something with this username
+        // ...
+        return NO;
+    }
+    return YES;
+}
+- (IBAction)contentButtonClicked:(id)sender
+{
+    UIButton *button = (UIButton *)sender;
+    NSLog(@"李磊-contentButtonClicked:%ld",button.tag);
+    [self.delegate messagesCollectionViewCellClickedContentButton:self clickedButton:button];
 }
 
 @end

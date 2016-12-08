@@ -36,6 +36,7 @@
 
 
 const CGFloat kJSQMessagesCollectionViewCellLabelHeightDefault = 20.0f;
+//默认头像大小
 const CGFloat kJSQMessagesCollectionViewAvatarSizeDefault = 30.0f;
 
 
@@ -70,7 +71,8 @@ const CGFloat kJSQMessagesCollectionViewAvatarSizeDefault = 30.0f;
         _messageBubbleLeftRightMargin = 240.0f;
     }
     else {
-        _messageBubbleLeftRightMargin = 50.0f;
+        //设置消息左右边距
+        _messageBubbleLeftRightMargin = 35.0f;
     }
     
     _messageBubbleTextViewFrameInsets = UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 6.0f);
@@ -412,6 +414,17 @@ const CGFloat kJSQMessagesCollectionViewAvatarSizeDefault = 30.0f;
                                                            withLayout:self];
 }
 
+- (BOOL)contentButtonIsShownForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    id<JSQMessageData> messageItem = [self.collectionView.dataSource collectionView:self.collectionView
+                                                      messageDataForItemAtIndexPath:indexPath];
+    if([messageItem buttonCount] > 0){
+        return YES;
+    }else{
+        return NO;
+    }
+}
+
 - (CGSize)sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CGSize messageBubbleSize = [self messageBubbleSizeForItemAtIndexPath:indexPath];
@@ -434,6 +447,8 @@ const CGFloat kJSQMessagesCollectionViewAvatarSizeDefault = 30.0f;
     layoutAttributes.messageBubbleContainerViewWidth = messageBubbleSize.width;
     
     layoutAttributes.textViewFrameInsets = self.messageBubbleTextViewFrameInsets;
+    
+    layoutAttributes.shownContentButton = [self contentButtonIsShownForItemAtIndexPath:indexPath];
     
     layoutAttributes.textViewTextContainerInsets = self.messageBubbleTextViewTextContainerInsets;
     

@@ -1,0 +1,27 @@
+//
+//  XLMessagesViewControllerDemo.pch
+//  XLMessagesViewControllerDemo
+//
+//  Created by Madis on 2016/12/2.
+//  Copyright © 2016年 Madis. All rights reserved.
+//
+
+#ifndef XLMessagesViewControllerDemo_pch
+#define XLMessagesViewControllerDemo_pch
+//log日志输出
+#ifdef DEBUG
+#define MSLog(...) NSLog(__VA_ARGS__)
+#else
+#define MSLog(...)
+#endif
+
+#import <UIKit/UIKit.h>
+#import "JSQMessages.h"
+#import "JSQMessageFormatter.h"
+//需要在界面外统一修改cell中的字体大小
+static const CGFloat kJSQMessagesCellTextViewFontSize = 10.0f;
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* XLMessagesViewControllerDemo_pch */

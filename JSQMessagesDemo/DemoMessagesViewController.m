@@ -172,7 +172,9 @@
     if (!copyMessage) {
         copyMessage = [JSQMessage messageWithSenderId:kJSQDemoAvatarIdJobs
                                           displayName:kJSQDemoAvatarDisplayNameJobs
-                                                 text:@"First received!"];
+                                                 text:@"First received!"
+                                       attributedText:nil
+                                          buttonCount:0];
     }
     
     /**
@@ -258,7 +260,9 @@
              */
             newMessage = [JSQMessage messageWithSenderId:randomUserId
                                              displayName:self.demoData.users[randomUserId]
-                                                    text:copyMessage.text];
+                                                    text:copyMessage.text
+                                          attributedText:nil
+                                             buttonCount:0];
         }
         
         /**
@@ -342,7 +346,9 @@
     JSQMessage *message = [[JSQMessage alloc] initWithSenderId:senderId
                                              senderDisplayName:senderDisplayName
                                                           date:date
-                                                          text:text];
+                                                          text:text
+                                                attributedText:nil
+                                                   buttonCount:0];
     
     [self.demoData.messages addObject:message];
     

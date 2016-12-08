@@ -20,6 +20,7 @@
 #import <UIKit/UIKit.h>
 
 #import "DemoMessagesViewController.h"
+#import "XLMessageViewController.h"
 
 @interface TableViewController : UITableViewController <JSQDemoViewControllerDelegate>
 

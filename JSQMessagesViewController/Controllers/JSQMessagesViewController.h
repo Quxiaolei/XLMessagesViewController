@@ -40,6 +40,11 @@
 @property (weak, nonatomic, readonly) JSQMessagesCollectionView *collectionView;
 
 /**
+ 设置是否显示输入框
+ */
+@property (assign, nonatomic) BOOL inputToolbarShown;
+
+/**
  *  Returns the input toolbar view object managed by this view controller.
  *  This view controller is the toolbar's delegate.
  */

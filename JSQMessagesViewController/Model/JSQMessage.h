@@ -51,12 +51,17 @@
  */
 @property (assign, nonatomic, readonly) BOOL isMediaMessage;
 
+//按钮数量,控制界面布局
+@property (assign, nonatomic, readonly) NSInteger buttonCount;
+
 /**
  *  Returns the body text of the message, or `nil` if the message is a media message.
  *  That is, if `isMediaMessage` is equal to `YES` then this value will be `nil`.
  */
 @property (copy, nonatomic, readonly) NSString *text;
 
+//含有超链的文本内容(使用时先判断attributedText是否为空,不为空使用此字段)
+@property (copy, nonatomic, readonly) NSMutableAttributedString *attributedText;
 /**
  *  Returns the media item attachment of the message, or `nil` if the message is not a media message.
  *  That is, if `isMediaMessage` is equal to `NO` then this value will be `nil`.
@@ -80,7 +85,9 @@
  */
 + (instancetype)messageWithSenderId:(NSString *)senderId
                         displayName:(NSString *)displayName
-                               text:(NSString *)text;
+                               text:(NSString *)text
+                     attributedText:(NSMutableAttributedString *)attributedText
+                        buttonCount:(NSInteger)buttonCount;
 
 /**
  *  Initializes and returns a message object having the given senderId, senderDisplayName, date, and text.
@@ -97,7 +104,9 @@
 - (instancetype)initWithSenderId:(NSString *)senderId
                senderDisplayName:(NSString *)senderDisplayName
                             date:(NSDate *)date
-                            text:(NSString *)text;
+                            text:(NSString *)text
+                  attributedText:(NSMutableAttributedString *)attributedText
+                     buttonCount:(NSInteger)buttonCount;
 /**
  *  Initializes and returns a message object having the given senderId, displayName, media,
  *  and current system date.

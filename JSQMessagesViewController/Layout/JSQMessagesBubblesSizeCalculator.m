@@ -133,7 +133,11 @@
         //  same as above, an extra 2 points of magix
         CGFloat finalWidth = MAX(stringSize.width + horizontalInsetsTotal, self.minimumBubbleWidth) + self.additionalInset;
 
-        finalSize = CGSizeMake(finalWidth, stringSize.height + verticalInsets);
+        if ([messageData buttonCount] >0){
+            finalSize = CGSizeMake(finalWidth, stringSize.height + verticalInsets + 39.0f);
+        }else{
+            finalSize = CGSizeMake(finalWidth, stringSize.height + verticalInsets);
+        }
     }
 
     [self.cache setObject:[NSValue valueWithCGSize:finalSize] forKey:@([messageData messageHash])];

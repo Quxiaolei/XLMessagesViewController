@@ -23,8 +23,8 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    
-    self.textColor = [UIColor whiteColor];
+    //配置cell中textView文本颜色
+    self.textColor = [UIColor colorWithRed:34/255.0 green:34/255.0 blue:34/255.0 alpha:1];
     self.editable = NO;
     self.selectable = YES;
     self.userInteractionEnabled = YES;
@@ -38,8 +38,13 @@
     self.contentOffset = CGPointZero;
     self.textContainerInset = UIEdgeInsetsZero;
     self.textContainer.lineFragmentPadding = 0;
-    self.linkTextAttributes = @{ NSForegroundColorAttributeName : [UIColor whiteColor],
-                                 NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle | NSUnderlinePatternSolid) };
+//    self.linkTextAttributes = @{ NSForegroundColorAttributeName : [UIColor whiteColor],
+//                                 NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle | NSUnderlinePatternSolid) };
+    //配置cell中textView中超链文本颜色
+    self.linkTextAttributes = @{
+                                NSForegroundColorAttributeName : [UIColor blueColor],
+                                NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle | NSUnderlinePatternSolid) };
+
 }
 
 - (void)setSelectedRange:(NSRange)selectedRange

@@ -64,6 +64,11 @@
 @property (assign, nonatomic) UIEdgeInsets textViewFrameInsets;
 
 /**
+ *详情按钮高度
+ *default:NO
+ */
+@property (assign, nonatomic) BOOL shownContentButton;
+/**
  *  The size of the `avatarImageView` of a `JSQMessagesCollectionViewCellIncoming`.
  *  The size values should be greater than or equal to `0.0`.
  *

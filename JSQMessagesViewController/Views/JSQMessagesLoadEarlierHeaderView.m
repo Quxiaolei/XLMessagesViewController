@@ -21,7 +21,7 @@
 
 #import "NSBundle+JSQMessages.h"
 
-
+//加载历史消息显示界面高度
 const CGFloat kJSQMessagesLoadEarlierHeaderViewHeight = 32.0f;
 
 

@@ -110,6 +110,9 @@
 
 @optional
 
+//设置按钮标题
+- (NSArray<NSString *> *)collectionView:(JSQMessagesCollectionView *)collectionView textArrayForCellContentButtonAtIndexPath:(NSIndexPath *)indexPath;
+
 /**
  *  Asks the data source for the text to display in the `cellTopLabel` for the specified
  *  message data item at indexPath in the collectionView.

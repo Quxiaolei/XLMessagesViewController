@@ -143,7 +143,11 @@
                 break;
             case 2:
             {
-                DemoMessagesViewController *vc = [DemoMessagesViewController messagesViewController];
+                XLMessageViewController *vc = [[XLMessageViewController alloc] initWithModel:[XLMessageViewModel new]];
+                vc.hidesBottomBarWhenPushed= YES;
+                vc.senderId = @"1";
+                vc.senderDisplayName = @"xiaolei";
+                vc.inputToolbarShown = NO;
                 [self.navigationController pushViewController:vc animated:YES];
             }
                 break;

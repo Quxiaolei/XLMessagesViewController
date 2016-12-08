@@ -47,6 +47,7 @@
 {
     [self setTranslatesAutoresizingMaskIntoConstraints:NO];
 
+    //设置背景颜色
     self.backgroundColor = [UIColor whiteColor];
     self.keyboardDismissMode = UIScrollViewKeyboardDismissModeNone;
     self.alwaysBounceVertical = YES;
@@ -181,5 +182,17 @@
                forItemAtIndexPath:indexPath
                        withSender:sender];
 }
+
+- (void)messagesCollectionViewCellClickedContentButton:(JSQMessagesCollectionViewCell *)cell clickedButton:(UIButton *)sender
+{
+    NSIndexPath *indexPath = [self indexPathForCell:cell];
+    if (indexPath == nil) {
+        return;
+    }
+    [self.delegate collectionView:self
+             contentButtonClicked:sender
+                      atIndexPath:indexPath];
+}
+
 
 @end

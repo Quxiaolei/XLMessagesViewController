@@ -173,17 +173,24 @@ JSQMessagesKeyboardControllerDelegate>
 
     self.jsq_isObserving = NO;
 
-    self.toolbarHeightConstraint.constant = self.inputToolbar.preferredDefaultHeight;
-
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
 
-    self.inputToolbar.delegate = self;
-    self.inputToolbar.contentView.textView.placeHolder = [NSBundle jsq_localizedStringForKey:@"new_message"];
+    //配置inputToolbar
+    if(self.inputToolbarShown){
+        self.toolbarHeightConstraint.constant = self.inputToolbar.preferredDefaultHeight;
 
-    self.inputToolbar.contentView.textView.accessibilityLabel = [NSBundle jsq_localizedStringForKey:@"new_message"];
+        self.inputToolbar.delegate = self;
+        self.inputToolbar.contentView.textView.placeHolder = [NSBundle jsq_localizedStringForKey:@"new_message"];
 
-    self.inputToolbar.contentView.textView.delegate = self;
+        self.inputToolbar.contentView.textView.accessibilityLabel = [NSBundle jsq_localizedStringForKey:@"new_message"];
+
+        self.inputToolbar.contentView.textView.delegate = self;
+    }else{
+        self.toolbarHeightConstraint.constant = 0.0f;
+//        self.inputToolbar.hidden = YES;
+        [self.inputToolbar removeFromSuperview];
+    }
 
     self.automaticallyScrollsToMostRecentMessage = YES;
 
@@ -277,7 +284,11 @@ JSQMessagesKeyboardControllerDelegate>
     NSParameterAssert(self.senderDisplayName != nil);
 
     [super viewWillAppear:animated];
-    self.toolbarHeightConstraint.constant = self.inputToolbar.preferredDefaultHeight;
+    if (self.inputToolbarShown) {
+        self.toolbarHeightConstraint.constant = self.inputToolbar.preferredDefaultHeight;
+    }else{
+        self.toolbarHeightConstraint.constant = 0.0f;
+    }
     [self.view layoutIfNeeded];
     [self.collectionView.collectionViewLayout invalidateLayout];
 
@@ -508,6 +519,10 @@ JSQMessagesKeyboardControllerDelegate>
     NSAssert(NO, @"ERROR: required method not implemented: %s", __PRETTY_FUNCTION__);
     return nil;
 }
+- (NSArray<NSString *> *)collectionView:(JSQMessagesCollectionView *)collectionView textArrayForCellContentButtonAtIndexPath:(NSIndexPath *)indexPath
+{
+    return nil;
+}
 
 - (NSAttributedString *)collectionView:(JSQMessagesCollectionView *)collectionView attributedTextForCellTopLabelAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -556,7 +571,11 @@ JSQMessagesKeyboardControllerDelegate>
     cell.delegate = collectionView;
 
     if (!isMediaMessage) {
-        cell.textView.text = [messageItem text];
+        if ([messageItem attributedText] && [messageItem attributedText].length >0) {
+            cell.textView.attributedText = [messageItem attributedText];
+        }else{
+            cell.textView.text = [messageItem text];
+        }
 
         if ([UIDevice jsq_isCurrentDeviceBeforeiOS8]) {
             //  workaround for iOS 7 textView data detectors bug
@@ -601,7 +620,22 @@ JSQMessagesKeyboardControllerDelegate>
             }
         }
     }
-
+    
+    NSInteger buttonCount = [messageItem buttonCount];
+    NSArray *array = [collectionView.dataSource collectionView:collectionView textArrayForCellContentButtonAtIndexPath:indexPath];
+    if (buttonCount == 0) {
+        for (int i = 0; i < 3; i++) {
+            UIButton *button = (UIButton *)[cell viewWithTag:i+100];
+            button.hidden = YES;
+//            [button removeFromSuperview];
+        }
+    }
+    for (int i = 0; i < array.count; i++) {
+        UIButton *button = (UIButton *)[cell viewWithTag:i+100];
+        button.hidden = NO;
+        [button setTitle:array[i] forState:UIControlStateNormal];
+    }
+    
     cell.cellTopLabel.attributedText = [collectionView.dataSource collectionView:collectionView attributedTextForCellTopLabelAtIndexPath:indexPath];
     cell.messageBubbleTopLabel.attributedText = [collectionView.dataSource collectionView:collectionView attributedTextForMessageBubbleTopLabelAtIndexPath:indexPath];
     cell.cellBottomLabel.attributedText = [collectionView.dataSource collectionView:collectionView attributedTextForCellBottomLabelAtIndexPath:indexPath];
@@ -757,6 +791,8 @@ JSQMessagesKeyboardControllerDelegate>
 - (void)collectionView:(JSQMessagesCollectionView *)collectionView
  didTapCellAtIndexPath:(NSIndexPath *)indexPath
          touchLocation:(CGPoint)touchLocation { }
+
+- (void)collectionView:(JSQMessagesCollectionView *)collectionView contentButtonClicked:(UIButton *)button atIndexPath:(NSIndexPath *)indexPath{ }
 
 #pragma mark - Input toolbar delegate
 

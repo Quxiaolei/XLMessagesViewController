@@ -119,4 +119,8 @@
 - (void)collectionView:(JSQMessagesCollectionView *)collectionView
                 header:(JSQMessagesLoadEarlierHeaderView *)headerView didTapLoadEarlierMessagesButton:(UIButton *)sender;
 
+
+//点击了cell中的Button
+- (void)collectionView:(JSQMessagesCollectionView *)collectionView contentButtonClicked:(UIButton *)button atIndexPath:(NSIndexPath *)indexPath;
+
 @end

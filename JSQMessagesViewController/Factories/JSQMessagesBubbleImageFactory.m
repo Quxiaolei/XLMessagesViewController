@@ -82,19 +82,32 @@
 - (JSQMessagesBubbleImage *)jsq_messagesBubbleImageWithColor:(UIColor *)color flippedForIncoming:(BOOL)flippedForIncoming
 {
     NSParameterAssert(color != nil);
-    
-    UIImage *normalBubble = [self.bubbleImage jsq_imageMaskedWithColor:color];
-    UIImage *highlightedBubble = [self.bubbleImage jsq_imageMaskedWithColor:[color jsq_colorByDarkeningColorWithValue:0.12f]];
-    
+    //!!!: 不使用颜色绘制,不设置选中后图片效果
     if (flippedForIncoming) {
-        normalBubble = [self jsq_horizontallyFlippedImageFromImage:normalBubble];
-        highlightedBubble = [self jsq_horizontallyFlippedImageFromImage:highlightedBubble];
+        //发送方
+        UIImage *normal = [UIImage jsq_bubbleRegularStrokedImage];
+        UIImage *highlighted = [UIImage jsq_bubbleRegularStrokedImage];
+        //将图片翻转
+        return [[JSQMessagesBubbleImage alloc] initWithMessageBubbleImage:[self jsq_stretchableImageFromImage:normal withCapInsets:self.capInsets] highlightedImage:[self jsq_stretchableImageFromImage:highlighted withCapInsets:self.capInsets]];
+    }else{
+        UIImage *normal = [UIImage jsq_bubbleRegularImage];
+        UIImage *highlighted = [UIImage jsq_bubbleRegularImage];
+        return [[JSQMessagesBubbleImage alloc] initWithMessageBubbleImage:[self jsq_stretchableImageFromImage:normal withCapInsets:self.capInsets] highlightedImage:[self jsq_stretchableImageFromImage:highlighted withCapInsets:self.capInsets]];
     }
-    
-    normalBubble = [self jsq_stretchableImageFromImage:normalBubble withCapInsets:self.capInsets];
-    highlightedBubble = [self jsq_stretchableImageFromImage:highlightedBubble withCapInsets:self.capInsets];
-    
-    return [[JSQMessagesBubbleImage alloc] initWithMessageBubbleImage:normalBubble highlightedImage:highlightedBubble];
+//    NSParameterAssert(color != nil);
+//    
+//    UIImage *normalBubble = [self.bubbleImage jsq_imageMaskedWithColor:color];
+//    UIImage *highlightedBubble = [self.bubbleImage jsq_imageMaskedWithColor:[color jsq_colorByDarkeningColorWithValue:0.12f]];
+//    
+//    if (flippedForIncoming) {
+//        normalBubble = [self jsq_horizontallyFlippedImageFromImage:normalBubble];
+//        highlightedBubble = [self jsq_horizontallyFlippedImageFromImage:highlightedBubble];
+//    }
+//    
+//    normalBubble = [self jsq_stretchableImageFromImage:normalBubble withCapInsets:self.capInsets];
+//    highlightedBubble = [self jsq_stretchableImageFromImage:highlightedBubble withCapInsets:self.capInsets];
+//    
+//    return [[JSQMessagesBubbleImage alloc] initWithMessageBubbleImage:normalBubble highlightedImage:highlightedBubble];
 }
 
 - (UIImage *)jsq_horizontallyFlippedImageFromImage:(UIImage *)image
