@@ -249,6 +249,11 @@
         [self.view endEditing:YES];
     });
 }
+- (BOOL)collectionView:(JSQMessagesCollectionView *)collectionView hyperlinkClickedWithURL:(NSURL *)hyperlinkURL atIndexPath:(NSIndexPath *)indexPath
+{
+    MSLog(@"李磊---%@",hyperlinkURL);
+    return YES;
+}
 
 //点击cell中的contentButton
 - (void)collectionView:(JSQMessagesCollectionView *)collectionView contentButtonClicked:(UIButton *)button atIndexPath:(NSIndexPath *)indexPath

@@ -433,14 +433,8 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
  */
 - (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange
 {
-    NSLog(@"李磊---%@",URL);
-    if ([[URL scheme] isEqualToString:@"username"]) {
-        NSString *username = [URL host];
-        // do something with this username
-        // ...
-        return NO;
-    }
-    return YES; // let the system open this URL
+    //    NSLog(@"cell中超链地址:%@",URL);
+    return [self.delegate messagesCollectionViewCellClickedHyperlink:self URL:URL];
 }
 
 /**
@@ -449,19 +443,13 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
  */
 - (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange interaction:(UITextItemInteraction)interaction
 {
-    NSLog(@"李磊---%@",URL);
-    if ([[URL scheme] isEqualToString:@"username"]) {
-        NSString *username = [URL host];
-        // do something with this username
-        // ...
-        return NO;
-    }
-    return YES;
+//    NSLog(@"cell中超链地址:%@",URL);
+    return [self.delegate messagesCollectionViewCellClickedHyperlink:self URL:URL];
 }
 - (IBAction)contentButtonClicked:(id)sender
 {
     UIButton *button = (UIButton *)sender;
-    NSLog(@"李磊-contentButtonClicked:%ld",button.tag);
+//    NSLog(@"cell中contentButtonClicked:%ld",button.tag);
     [self.delegate messagesCollectionViewCellClickedContentButton:self clickedButton:button];
 }
 

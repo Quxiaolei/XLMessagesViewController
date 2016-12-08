@@ -183,6 +183,17 @@
                        withSender:sender];
 }
 
+- (BOOL)messagesCollectionViewCellClickedHyperlink:(JSQMessagesCollectionViewCell *)cell URL:(NSURL *)hyperlinkURL
+{
+    NSIndexPath *indexPath = [self indexPathForCell:cell];
+    if (indexPath == nil) {
+        return NO;
+    }
+    return [self.delegate collectionView:self
+             hyperlinkClickedWithURL:hyperlinkURL
+                      atIndexPath:indexPath];
+}
+
 - (void)messagesCollectionViewCellClickedContentButton:(JSQMessagesCollectionViewCell *)cell clickedButton:(UIButton *)sender
 {
     NSIndexPath *indexPath = [self indexPathForCell:cell];

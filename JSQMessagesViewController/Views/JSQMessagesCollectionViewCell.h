@@ -72,6 +72,9 @@
  */
 - (void)messagesCollectionViewCell:(JSQMessagesCollectionViewCell *)cell didPerformAction:(SEL)action withSender:(id)sender;
 
+//点击cell中的超链
+- (BOOL)messagesCollectionViewCellClickedHyperlink:(JSQMessagesCollectionViewCell *)cell URL:(NSURL *)hyperlinkURL;
+
 //点击cell中的Button
 - (void)messagesCollectionViewCellClickedContentButton:(JSQMessagesCollectionViewCell *)cell clickedButton:(UIButton *)sender;
 

@@ -792,6 +792,11 @@ JSQMessagesKeyboardControllerDelegate>
  didTapCellAtIndexPath:(NSIndexPath *)indexPath
          touchLocation:(CGPoint)touchLocation { }
 
+- (BOOL)collectionView:(JSQMessagesCollectionView *)collectionView hyperlinkClickedWithURL:(NSURL *)hyperlinkURL atIndexPath:(NSIndexPath *)indexPath
+{
+    return NO;
+}
+
 - (void)collectionView:(JSQMessagesCollectionView *)collectionView contentButtonClicked:(UIButton *)button atIndexPath:(NSIndexPath *)indexPath{ }
 
 #pragma mark - Input toolbar delegate
