@@ -45,7 +45,7 @@
 {
     switch (section) {
         case 0:
-            return 2;
+            return 3;
         case 1:
             return 2;
         case 2:
@@ -73,6 +73,9 @@
                 break;
             case 1:
                 cell.textLabel.text = @"Push programmatically";
+                break;
+            case 2:
+                cell.textLabel.text = @"XLMessagesViewController";
                 break;
         }
     }
@@ -133,6 +136,12 @@
                 [self performSegueWithIdentifier:@"seguePushDemoVC" sender:self];
                 break;
             case 1:
+            {
+                DemoMessagesViewController *vc = [DemoMessagesViewController messagesViewController];
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+                break;
+            case 2:
             {
                 DemoMessagesViewController *vc = [DemoMessagesViewController messagesViewController];
                 [self.navigationController pushViewController:vc animated:YES];
