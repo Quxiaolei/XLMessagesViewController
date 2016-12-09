@@ -574,7 +574,8 @@ JSQMessagesKeyboardControllerDelegate>
         if ([messageItem attributedText] && [messageItem attributedText].length >0) {
             cell.textView.attributedText = [messageItem attributedText];
         }else{
-            cell.textView.text = [messageItem text];
+            cell.textView.attributedText = [[NSAttributedString alloc] initWithString:[messageItem text]
+                                                                           attributes:@{ NSFontAttributeName : collectionView.collectionViewLayout.messageBubbleFont }];
         }
 
         if ([UIDevice jsq_isCurrentDeviceBeforeiOS8]) {
@@ -629,11 +630,12 @@ JSQMessagesKeyboardControllerDelegate>
             button.hidden = YES;
 //            [button removeFromSuperview];
         }
-    }
-    for (int i = 0; i < array.count; i++) {
-        UIButton *button = (UIButton *)[cell viewWithTag:i+100];
-        button.hidden = NO;
-        [button setTitle:array[i] forState:UIControlStateNormal];
+    }else{
+        for (int i = 0; i < array.count; i++) {
+            UIButton *button = (UIButton *)[cell viewWithTag:i+100];
+            button.hidden = NO;
+            [button setTitle:array[i] forState:UIControlStateNormal];
+        }
     }
     
     cell.cellTopLabel.attributedText = [collectionView.dataSource collectionView:collectionView attributedTextForCellTopLabelAtIndexPath:indexPath];

@@ -190,8 +190,8 @@
         return NO;
     }
     return [self.delegate collectionView:self
-             hyperlinkClickedWithURL:hyperlinkURL
-                      atIndexPath:indexPath];
+                 hyperlinkClickedWithURL:hyperlinkURL
+                             atIndexPath:indexPath];
 }
 
 - (void)messagesCollectionViewCellClickedContentButton:(JSQMessagesCollectionViewCell *)cell clickedButton:(UIButton *)sender
