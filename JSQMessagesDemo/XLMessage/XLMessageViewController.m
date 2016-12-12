@@ -261,6 +261,12 @@
     MSLog(@"李磊-%ld",button.tag);
 }
 
+#pragma mark - target action
+
+- (void)jsq_loginViewClicked:(id)sender
+{
+    MSLog(@"loginViewClicked");
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

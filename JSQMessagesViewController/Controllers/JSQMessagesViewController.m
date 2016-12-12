@@ -38,6 +38,7 @@
 #import "UIColor+JSQMessages.h"
 #import "UIDevice+JSQMessages.h"
 #import "NSBundle+JSQMessages.h"
+#import "UIImage+JSQMessages.h"
 
 #import <objc/runtime.h>
 
@@ -121,6 +122,8 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
 @interface JSQMessagesViewController () <JSQMessagesInputToolbarDelegate,
 JSQMessagesKeyboardControllerDelegate>
+@property (weak, nonatomic) IBOutlet UIView *loginView;
+@property (weak, nonatomic) IBOutlet UIImageView *loginArrowImageView;
 
 @property (weak, nonatomic) IBOutlet JSQMessagesCollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet JSQMessagesInputToolbar *inputToolbar;
@@ -176,6 +179,14 @@ JSQMessagesKeyboardControllerDelegate>
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
 
+    //配置是否显示loginView
+    if(!self.loginViewHidden){
+        self.loginArrowImageView.image = [UIImage jsq_bubbleLoginArrowImage];
+        self.loginView.hidden = NO;
+    }else{
+        self.loginView.hidden = YES;
+    }
+    
     //配置inputToolbar
     if(self.inputToolbarShown){
         self.toolbarHeightConstraint.constant = self.inputToolbar.preferredDefaultHeight;
@@ -284,6 +295,16 @@ JSQMessagesKeyboardControllerDelegate>
     NSParameterAssert(self.senderDisplayName != nil);
 
     [super viewWillAppear:animated];
+    
+    //配置是否显示loginView
+    if(!self.loginViewHidden){
+        self.loginArrowImageView.image = [UIImage jsq_bubbleLoginArrowImage];
+        self.loginView.hidden = NO;
+    }else{
+        self.loginView.hidden = YES;
+    }
+    
+    //配置inputToolbar
     if (self.inputToolbarShown) {
         self.toolbarHeightConstraint.constant = self.inputToolbar.preferredDefaultHeight;
     }else{
@@ -375,6 +396,12 @@ JSQMessagesKeyboardControllerDelegate>
     JSQMessagesCollectionViewFlowLayoutInvalidationContext *context = [JSQMessagesCollectionViewFlowLayoutInvalidationContext context];
     context.invalidateFlowLayoutMessagesCache = YES;
     [self.collectionView.collectionViewLayout invalidateLayoutWithContext:context];
+}
+
+#pragma mark - target action
+
+- (IBAction)jsq_loginViewClicked:(id)sender
+{
 }
 
 #pragma mark - Messages view controller

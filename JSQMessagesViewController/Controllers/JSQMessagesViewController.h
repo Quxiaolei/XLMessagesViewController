@@ -40,6 +40,10 @@
 @property (weak, nonatomic, readonly) JSQMessagesCollectionView *collectionView;
 
 /**
+ 设置是否显示登录界面
+ */
+@property (assign, nonatomic) BOOL loginViewHidden;
+/**
  设置是否显示输入框
  */
 @property (assign, nonatomic) BOOL inputToolbarShown;

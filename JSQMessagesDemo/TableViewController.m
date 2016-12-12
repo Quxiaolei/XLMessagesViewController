@@ -148,6 +148,7 @@
                 vc.senderId = @"1";
                 vc.senderDisplayName = @"xiaolei";
                 vc.inputToolbarShown = NO;
+                vc.loginViewHidden = NO;
                 [self.navigationController pushViewController:vc animated:YES];
             }
                 break;

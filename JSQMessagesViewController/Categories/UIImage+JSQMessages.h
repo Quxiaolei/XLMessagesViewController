@@ -29,6 +29,9 @@
  */
 - (UIImage *)jsq_imageMaskedWithColor:(UIColor *)maskColor;
 
+//返回登录功能中的箭头
++ (UIImage *)jsq_bubbleLoginArrowImage;
+
 /**
  *  @return The regular message bubble image.
  */

@@ -55,6 +55,11 @@
     return [UIImage imageWithContentsOfFile:path];
 }
 
++ (UIImage *)jsq_bubbleLoginArrowImage
+{
+    return [UIImage jsq_bubbleImageFromBundleWithName:@"loginArrow"];
+}
+
 + (UIImage *)jsq_bubbleRegularImage
 {
     return [UIImage jsq_bubbleImageFromBundleWithName:@"bubble_regular"];

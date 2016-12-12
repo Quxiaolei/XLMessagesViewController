@@ -13,6 +13,8 @@
             <connections>
                 <outlet property="collectionView" destination="l9u-2b-4LK" id="bLP-6g-CkO"/>
                 <outlet property="inputToolbar" destination="BoD-Az-3DM" id="w74-g9-1qA"/>
+                <outlet property="loginArrowImageView" destination="TCf-GW-CXJ" id="F3q-2R-wgy"/>
+                <outlet property="loginView" destination="Cab-bg-DG8" id="y6N-Z9-4Gb"/>
                 <outlet property="toolbarBottomLayoutGuide" destination="rHs-6q-NX4" id="d6h-iu-VMX"/>
                 <outlet property="toolbarHeightConstraint" destination="HIk-02-qcW" id="jE8-xC-1eD"/>
                 <outlet property="view" destination="mUa-cS-ru4" id="nki-T1-RTI"/>
@@ -29,6 +31,46 @@
                     <collectionViewLayout key="collectionViewLayout" id="dZl-7C-LHR" customClass="JSQMessagesCollectionViewFlowLayout"/>
                     <cells/>
                 </collectionView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cab-bg-DG8">
+                    <rect key="frame" x="0.0" y="64" width="375" height="25"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="登录后可查看更多信息" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6fk-FE-NBY">
+                            <rect key="frame" x="121" y="0.0" width="133" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="133" id="c3J-Mx-tvJ"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TCf-GW-CXJ">
+                            <rect key="frame" x="260" y="8.5" width="5" height="9"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="5" id="jSW-JR-yaS"/>
+                                <constraint firstAttribute="height" constant="9" id="oAe-r6-j90"/>
+                            </constraints>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yjK-hd-5VN">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="25"/>
+                            <connections>
+                                <action selector="jsq_loginViewClicked:" destination="-1" eventType="touchUpInside" id="N3e-Up-WWG"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.98039215686274506" green="0.74901960784313726" blue="0.0039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="25" id="2CR-dd-pej"/>
+                        <constraint firstItem="6fk-FE-NBY" firstAttribute="centerY" secondItem="Cab-bg-DG8" secondAttribute="centerY" id="7ed-6R-fJx"/>
+                        <constraint firstItem="6fk-FE-NBY" firstAttribute="height" secondItem="Cab-bg-DG8" secondAttribute="height" id="FyS-oG-UuE"/>
+                        <constraint firstAttribute="bottom" secondItem="yjK-hd-5VN" secondAttribute="bottom" id="LWR-tN-lCj"/>
+                        <constraint firstAttribute="trailing" secondItem="yjK-hd-5VN" secondAttribute="trailing" id="Qzh-8L-JXD"/>
+                        <constraint firstItem="yjK-hd-5VN" firstAttribute="leading" secondItem="Cab-bg-DG8" secondAttribute="leading" id="ZTu-4q-gjb"/>
+                        <constraint firstItem="6fk-FE-NBY" firstAttribute="centerX" secondItem="Cab-bg-DG8" secondAttribute="centerX" id="cU8-pd-dvS"/>
+                        <constraint firstItem="TCf-GW-CXJ" firstAttribute="leading" secondItem="6fk-FE-NBY" secondAttribute="trailing" constant="6" id="eFN-QZ-GaH"/>
+                        <constraint firstItem="TCf-GW-CXJ" firstAttribute="centerY" secondItem="6fk-FE-NBY" secondAttribute="centerY" id="eOk-dd-csR"/>
+                        <constraint firstItem="yjK-hd-5VN" firstAttribute="top" secondItem="Cab-bg-DG8" secondAttribute="top" id="pjZ-Ms-HR0"/>
+                    </constraints>
+                </view>
                 <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BoD-Az-3DM" customClass="JSQMessagesInputToolbar">
                     <rect key="frame" x="0.0" y="667" width="375" height="0.0"/>
                     <constraints>
@@ -40,14 +82,18 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="BoD-Az-3DM" secondAttribute="trailing" id="7xc-Ha-asg"/>
+                <constraint firstItem="Cab-bg-DG8" firstAttribute="leading" secondItem="mUa-cS-ru4" secondAttribute="leading" id="CM1-z4-RPa"/>
                 <constraint firstItem="l9u-2b-4LK" firstAttribute="leading" secondItem="mUa-cS-ru4" secondAttribute="leading" id="MmF-oh-Y75"/>
                 <constraint firstAttribute="trailing" secondItem="l9u-2b-4LK" secondAttribute="trailing" id="O9u-TA-A0e"/>
                 <constraint firstAttribute="bottom" secondItem="l9u-2b-4LK" secondAttribute="bottom" id="Re7-WW-UmS"/>
+                <constraint firstItem="Cab-bg-DG8" firstAttribute="top" secondItem="mUa-cS-ru4" secondAttribute="top" constant="64" id="ZrZ-qs-JgD"/>
                 <constraint firstItem="l9u-2b-4LK" firstAttribute="top" secondItem="mUa-cS-ru4" secondAttribute="top" id="dCQ-DM-Wdj"/>
+                <constraint firstItem="Cab-bg-DG8" firstAttribute="centerX" secondItem="mUa-cS-ru4" secondAttribute="centerX" id="poN-o3-pV9"/>
                 <constraint firstAttribute="bottom" secondItem="BoD-Az-3DM" secondAttribute="bottom" id="rHs-6q-NX4"/>
                 <constraint firstItem="BoD-Az-3DM" firstAttribute="leading" secondItem="mUa-cS-ru4" secondAttribute="leading" id="ts7-8f-0lH"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
+            <point key="canvasLocation" x="24.5" y="51.5"/>
         </view>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
