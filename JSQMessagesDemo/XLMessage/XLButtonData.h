@@ -8,11 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface XLButtonData : NSObject
+@interface XLButtonData : JSQButtonData
 
-- (id)initWithContent:(NSString *)content;
-
-//按钮描述文本
-@property (copy, nonatomic) NSString *content;
 
 @end

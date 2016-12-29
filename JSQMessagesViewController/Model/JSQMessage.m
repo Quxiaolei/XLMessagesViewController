@@ -27,14 +27,16 @@
                         displayName:(NSString *)displayName
                                text:(NSString *)text
                      attributedText:(NSMutableAttributedString *)attributedText
-                        buttonCount:(NSInteger)buttonCount
+                     hyperlinkArray:(NSArray *)hyperlinkArray
+                 buttonContentArray:(NSArray *)buttonContentArray
 {
     return [[self alloc] initWithSenderId:senderId
                         senderDisplayName:displayName
                                      date:[NSDate date]
                                      text:text
                            attributedText:attributedText
-                              buttonCount:buttonCount];
+                           hyperlinkArray:hyperlinkArray
+                       buttonContentArray:buttonContentArray];
 }
 
 - (instancetype)initWithSenderId:(NSString *)senderId
@@ -42,7 +44,8 @@
                             date:(NSDate *)date
                             text:(NSString *)text
                   attributedText:(NSMutableAttributedString *)attributedText
-                     buttonCount:(NSInteger)buttonCount
+                  hyperlinkArray:(NSArray *)hyperlinkArray
+              buttonContentArray:(NSArray *)buttonContentArray
 {
     NSParameterAssert(text != nil);
 
@@ -52,7 +55,10 @@
         if (attributedText != nil) {
             _attributedText = [attributedText copy];
         }
-        _buttonCount = buttonCount;
+        if(buttonContentArray && buttonContentArray.count >0){
+            _buttonContentArray = [buttonContentArray copy];
+            _buttonCount = buttonContentArray.count;
+        }
     }
     return self;
 }
@@ -133,7 +139,9 @@
     && [self.senderDisplayName isEqualToString:aMessage.senderDisplayName]
     && ([self.date compare:aMessage.date] == NSOrderedSame)
     && hasEqualContent
-    && [self.attributedText isEqualToAttributedString:aMessage.attributedText];
+    && [self.attributedText isEqualToAttributedString:aMessage.attributedText]
+    && [self.hyperlinkArray isEqualToArray:aMessage.hyperlinkArray]
+    && [self.buttonContentArray isEqualToArray:aMessage.buttonContentArray];
 }
 
 - (NSUInteger)hash
@@ -144,8 +152,8 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<%@: senderId=%@, senderDisplayName=%@, date=%@, isMediaMessage=%@, text=%@, attributedText=%@, media=%@, buttonCount=%ld>",
-            [self class], self.senderId, self.senderDisplayName, self.date, @(self.isMediaMessage), self.text, self.attributedText, self.media, self.buttonCount];
+    return [NSString stringWithFormat:@"<%@: senderId=%@, senderDisplayName=%@, date=%@, isMediaMessage=%@, text=%@, attributedText=%@, media=%@, buttonCount=%ld, hyperlinkArray=%@, buttonContentArray=%@>",
+            [self class], self.senderId, self.senderDisplayName, self.date, @(self.isMediaMessage), self.text, self.attributedText, self.media, self.buttonCount,self.hyperlinkArray,self.buttonContentArray];
 }
 
 - (id)debugQuickLookObject
@@ -166,6 +174,9 @@
         _buttonCount = [aDecoder decodeIntegerForKey:NSStringFromSelector(@selector(buttonCount))];
         _text = [aDecoder decodeObjectForKey:NSStringFromSelector(@selector(text))];
         _attributedText = [aDecoder decodeObjectForKey:NSStringFromSelector(@selector(attributedText))];
+        
+        _hyperlinkArray = [aDecoder decodeObjectForKey:NSStringFromSelector(@selector(hyperlinkArray))];
+        _buttonContentArray = [aDecoder decodeObjectForKey:NSStringFromSelector(@selector(buttonContentArray))];
         _media = [aDecoder decodeObjectForKey:NSStringFromSelector(@selector(media))];
     }
     return self;
@@ -181,6 +192,12 @@
     [aCoder encodeObject:self.text forKey:NSStringFromSelector(@selector(text))];
     [aCoder encodeObject:self.attributedText forKey:NSStringFromSelector(@selector(attributedText))];
 
+    if ([self.hyperlinkArray conformsToProtocol:@protocol(NSCoding)]) {
+        [aCoder encodeObject:self.hyperlinkArray forKey:NSStringFromSelector(@selector(hyperlinkArray))];
+    }
+    if ([self.buttonContentArray conformsToProtocol:@protocol(NSCoding)]) {
+        [aCoder encodeObject:self.buttonContentArray forKey:NSStringFromSelector(@selector(buttonContentArray))];
+    }
     if ([self.media conformsToProtocol:@protocol(NSCoding)]) {
         [aCoder encodeObject:self.media forKey:NSStringFromSelector(@selector(media))];
     }
@@ -202,7 +219,8 @@
                                                           date:self.date
                                                           text:self.text
                                                 attributedText:self.attributedText
-                                                   buttonCount:self.buttonCount];
+                                                hyperlinkArray:self.hyperlinkArray
+                                            buttonContentArray:self.buttonContentArray];
 }
 
 @end

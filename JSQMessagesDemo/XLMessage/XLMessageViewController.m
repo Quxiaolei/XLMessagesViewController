@@ -104,7 +104,7 @@
     if (!message.isMediaMessage && message.buttonContentArray.count >0) {
         NSMutableArray *buttonTitleArray = [NSMutableArray arrayWithCapacity:message.buttonContentArray.count];
         for (XLButtonData *buttonData in message.buttonContentArray) {
-            [buttonTitleArray addObject:buttonData.content];
+            [buttonTitleArray addObject:buttonData.btnContent];
         }
         return buttonTitleArray;
     }

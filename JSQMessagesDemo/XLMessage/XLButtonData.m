@@ -10,12 +10,4 @@
 
 @implementation XLButtonData
 
-- (id)initWithContent:(NSString *)content
-{
-    self = [super init];
-    if (self) {
-        self.content = content;
-    }
-    return self;
-}
 @end

@@ -19,6 +19,8 @@
 #import <Foundation/Foundation.h>
 
 #import "JSQMessageData.h"
+#import "JSQHyperlinkData.h"
+#import "JSQButtonData.h"
 
 /**
  *  The `JSQMessage` class is a concrete class for message model objects that represents a single user message.
@@ -54,6 +56,12 @@
 //按钮数量,控制界面布局
 @property (assign, nonatomic, readonly) NSInteger buttonCount;
 
+//超链模型数组
+@property (strong, nonatomic,readonly) NSArray <JSQHyperlinkData*> *hyperlinkArray;
+
+//按钮模型数组
+@property (strong, nonatomic,readonly) NSArray <JSQButtonData*> *buttonContentArray;
+
 /**
  *  Returns the body text of the message, or `nil` if the message is a media message.
  *  That is, if `isMediaMessage` is equal to `YES` then this value will be `nil`.
@@ -87,7 +95,8 @@
                         displayName:(NSString *)displayName
                                text:(NSString *)text
                      attributedText:(NSMutableAttributedString *)attributedText
-                        buttonCount:(NSInteger)buttonCount;
+                     hyperlinkArray:(NSArray *)hyperlinkArray
+                 buttonContentArray:(NSArray *)buttonContentArray;
 
 /**
  *  Initializes and returns a message object having the given senderId, senderDisplayName, date, and text.
@@ -106,7 +115,8 @@
                             date:(NSDate *)date
                             text:(NSString *)text
                   attributedText:(NSMutableAttributedString *)attributedText
-                     buttonCount:(NSInteger)buttonCount;
+                  hyperlinkArray:(NSArray *)hyperlinkArray
+              buttonContentArray:(NSArray *)buttonContentArray;
 /**
  *  Initializes and returns a message object having the given senderId, displayName, media,
  *  and current system date.

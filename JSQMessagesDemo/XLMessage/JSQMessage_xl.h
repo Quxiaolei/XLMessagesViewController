@@ -19,10 +19,10 @@
 //是否显示时间
 @property (nonatomic, assign) BOOL           isHiddenTime;
 
-//超链地址数组
-@property (strong, nonatomic) NSArray <XLHyperlinkData *> *hyperlinkArray;
-//按钮数据数组
-@property (strong, nonatomic) NSArray <XLButtonData    *> *buttonContentArray;
+////超链地址数组
+//@property (strong, nonatomic) NSArray <XLHyperlinkData *> *hyperlinkArray;
+////按钮数据数组
+//@property (strong, nonatomic) NSArray <XLButtonData    *> *buttonContentArray;
 
 //富文本
 @property (copy, nonatomic) NSMutableAttributedString *attributedString;

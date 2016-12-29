@@ -174,7 +174,8 @@
                                           displayName:kJSQDemoAvatarDisplayNameJobs
                                                  text:@"First received!"
                                        attributedText:nil
-                                          buttonCount:0];
+                                       hyperlinkArray:[NSArray new]
+                                   buttonContentArray:[NSArray new]];
     }
     
     /**
@@ -262,7 +263,8 @@
                                              displayName:self.demoData.users[randomUserId]
                                                     text:copyMessage.text
                                           attributedText:nil
-                                             buttonCount:0];
+                                          hyperlinkArray:[NSArray new]
+                                      buttonContentArray:[NSArray new]];
         }
         
         /**
@@ -348,7 +350,8 @@
                                                           date:date
                                                           text:text
                                                 attributedText:nil
-                                                   buttonCount:0];
+                                                hyperlinkArray:[NSArray new]
+                                            buttonContentArray:[NSArray new]];
     
     [self.demoData.messages addObject:message];
     

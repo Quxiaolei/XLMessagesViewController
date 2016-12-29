@@ -38,11 +38,11 @@ static NSString * const kJSQDemoAvatarIdWoz = @"309-41802-93823";
     [hyperlinkArray addObject:[[XLHyperlinkData alloc] initWithLinkText:@"marcelofabri_" linkURL:@"https://www.baidu.com/index.php?tn=monline_3_dg"]];
 
     NSMutableArray *buttonContentArray = [NSMutableArray arrayWithCapacity:0];
-    [buttonContentArray addObject:[[XLButtonData alloc] initWithContent:@"hello"]];
+    [buttonContentArray addObject:[[XLButtonData alloc] initWithBtnContent:@"hello"]];
     NSArray *buttonArray1 = [buttonContentArray copy];
-    [buttonContentArray addObject:[[XLButtonData alloc] initWithContent:@"test1"]];
+    [buttonContentArray addObject:[[XLButtonData alloc] initWithBtnContent:@"test1"]];
     NSArray *buttonArray2 = [buttonContentArray copy];
-    [buttonContentArray addObject:[[XLButtonData alloc] initWithContent:@"test2"]];
+    [buttonContentArray addObject:[[XLButtonData alloc] initWithBtnContent:@"test2"]];
     NSArray *buttonArray3 = [buttonContentArray copy];
 
     self.messages = [[NSMutableArray alloc] initWithObjects:

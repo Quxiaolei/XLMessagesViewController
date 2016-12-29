@@ -8,14 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface XLHyperlinkData : NSObject
+@interface XLHyperlinkData : JSQHyperlinkData
 
-- (id)initWithLinkText:(NSString *)linkText linkURL:(NSString *)linkURL;
-
-//超链内容
-@property (copy, nonatomic) NSString *linkText;
-
-//超链地址
-@property (copy, nonatomic) NSString *linkURL;
 
 @end

@@ -56,13 +56,14 @@
                                                       date:self.date
                                                       text:self.text
                                             attributedText:nil
-                                               buttonCount:0];
+                                            hyperlinkArray:[NSArray new]
+                                        buttonContentArray:[NSArray new]];
     XCTAssertNotNil(msg, @"Message should not be nil");
 }
 
 - (void)testTextMessageInvalidInit
 {
-    XCTAssertThrows([[JSQMessage alloc] initWithSenderId:nil senderDisplayName:nil date:nil text:nil attributedText:nil buttonCount:0], @"Invalid init should throw");
+    XCTAssertThrows([[JSQMessage alloc] initWithSenderId:nil senderDisplayName:nil date:nil text:nil attributedText:nil hyperlinkArray:[NSArray new] buttonContentArray:[NSArray new]], @"Invalid init should throw");
 }
 
 - (void)testTextMessageIsEqual
@@ -72,7 +73,8 @@
                                                       date:self.date
                                                       text:self.text
                                             attributedText:nil
-                                               buttonCount:0];
+                                            hyperlinkArray:[NSArray new]
+                                        buttonContentArray:[NSArray new]];
     JSQMessage *copy = [msg copy];
     
     XCTAssertEqualObjects(msg, copy, @"Copied messages should be equal");
@@ -89,7 +91,8 @@
                                                       date:self.date
                                                       text:self.text
                                             attributedText:nil
-                                               buttonCount:0];
+                                            hyperlinkArray:[NSArray new]
+                                        buttonContentArray:[NSArray new]];
     NSData *msgData = [NSKeyedArchiver archivedDataWithRootObject:msg];
     
     JSQMessage *unarchivedMsg = [NSKeyedUnarchiver unarchiveObjectWithData:msgData];

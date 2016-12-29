@@ -37,7 +37,7 @@
 
 const CGFloat kJSQMessagesCollectionViewCellLabelHeightDefault = 20.0f;
 //默认头像大小
-const CGFloat kJSQMessagesCollectionViewAvatarSizeDefault = 30.0f;
+const CGFloat kJSQMessagesCollectionViewAvatarSizeDefault = 32.0f;
 
 
 @interface JSQMessagesCollectionViewFlowLayout ()
@@ -65,7 +65,7 @@ const CGFloat kJSQMessagesCollectionViewAvatarSizeDefault = 30.0f;
     self.sectionInset = UIEdgeInsetsMake(10.0f, 4.0f, 10.0f, 4.0f);
     self.minimumLineSpacing = 4.0f;
     
-    _messageBubbleFont = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
+    _messageBubbleFont = [UIFont systemFontOfSize:14.0f];
     
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         _messageBubbleLeftRightMargin = 240.0f;

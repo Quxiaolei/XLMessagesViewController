@@ -22,6 +22,23 @@
 
 #pragma mark - Message bubble colors
 
++(UIColor *)jsq_messageSendTimeColor
+{
+    //0x666666
+    return [UIColor colorWithRed:102/255.0 green:102/255.0 blue:102/255.0 alpha:1];
+}
++ (UIColor *)jsq_messageContentColor
+{
+    //0x070808
+    return [UIColor colorWithRed:7/255.0 green:8/255.0 blue:8/255.0 alpha:1];
+}
+
++ (UIColor *)jsq_messageContentLinkColor
+{
+    //0xe80f7b
+    return [UIColor colorWithRed:232/255.0 green:15/255.0 blue:123/255.0 alpha:1];
+}
+
 + (UIColor *)jsq_messageBubbleGreenColor
 {
     return [UIColor colorWithHue:130.0f / 360.0f

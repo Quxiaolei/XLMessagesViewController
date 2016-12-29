@@ -17,6 +17,7 @@
 //
 
 #import "JSQMessagesCellTextView.h"
+#import "UIColor+JSQMessages.h"
 
 @implementation JSQMessagesCellTextView
 
@@ -24,7 +25,7 @@
 {
     [super awakeFromNib];
     //配置cell中textView文本颜色
-    self.textColor = [UIColor colorWithRed:34/255.0 green:34/255.0 blue:34/255.0 alpha:1];
+    self.textColor = [UIColor jsq_messageContentColor];
     self.editable = NO;
     self.selectable = YES;
     self.userInteractionEnabled = YES;
@@ -42,7 +43,7 @@
 //                                 NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle | NSUnderlinePatternSolid) };
     //配置cell中textView中超链文本颜色
     self.linkTextAttributes = @{
-                                NSForegroundColorAttributeName : [UIColor blueColor],
+                                NSForegroundColorAttributeName : [UIColor jsq_messageContentLinkColor],
                                 NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle | NSUnderlinePatternSolid) };
 
 }

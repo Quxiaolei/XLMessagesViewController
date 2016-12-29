@@ -43,6 +43,8 @@
 
 //  Model
 #import "JSQMessage.h"
+#import "JSQHyperlinkData.h"
+#import "JSQButtonData.h"
 
 #import "JSQMediaItem.h"
 #import "JSQAudioMediaItem.h"

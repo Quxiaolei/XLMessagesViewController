@@ -24,6 +24,7 @@
 #import "JSQMessageData.h"
 
 #import "UIImage+JSQMessages.h"
+#import "JSQButtonData.h"
 
 
 @interface JSQMessagesBubblesSizeCalculator ()
@@ -134,8 +135,28 @@
         CGFloat finalWidth = MAX(stringSize.width + horizontalInsetsTotal, self.minimumBubbleWidth) + self.additionalInset;
 
         if ([messageData buttonCount] >0){
+            //有文本和按钮的消息类型
+            NSArray *buttonArray = [messageData buttonContentArray];
+            CGFloat buttonWidth = CGFLOAT_MIN;
+            for (JSQButtonData *buttonData in buttonArray) {
+                CGRect stringRect = [buttonData.btnContent boundingRectWithSize:CGSizeMake(maximumTextWidth, CGFLOAT_MAX)
+                                                                     options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading)
+                                                                  attributes:@{ NSFontAttributeName : layout.messageBubbleFont }
+                                                                     context:nil];
+                CGSize stringSize = CGRectIntegral(stringRect).size;
+                buttonWidth = buttonWidth + stringSize.width + 6.0f + 10.0f*2 + 10.0f;
+            }
+            buttonWidth += 6.0f;
+            if (finalWidth < buttonWidth) {
+                finalWidth = buttonWidth;
+            }
             finalSize = CGSizeMake(finalWidth, stringSize.height + verticalInsets + 39.0f);
+            if ([[messageData text] isEqualToString:@""]) {
+                //没文本,纯按钮的消息类型(17.0f)
+                finalSize = CGSizeMake(finalWidth, stringSize.height + verticalInsets + 15.0f);
+            }
         }else{
+            //没有按钮的消息类型
             finalSize = CGSizeMake(finalWidth, stringSize.height + verticalInsets);
         }
     }

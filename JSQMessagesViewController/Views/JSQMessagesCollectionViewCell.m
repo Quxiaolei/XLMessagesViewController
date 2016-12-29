@@ -24,7 +24,7 @@
 
 #import "UIView+JSQMessages.h"
 #import "UIDevice+JSQMessages.h"
-
+#import "UIColor+JSQMessages.h"
 
 static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
 
@@ -125,8 +125,8 @@ static NSMutableSet *jsqMessagesCollectionViewCellActions = nil;
     self.avatarViewSize = CGSizeZero;
 
     self.cellTopLabel.textAlignment = NSTextAlignmentCenter;
-    self.cellTopLabel.font = [UIFont boldSystemFontOfSize:12.0f];
-    self.cellTopLabel.textColor = [UIColor colorWithRed:102/255.0 green:102/255.0 blue:102/255.0 alpha:1];
+    self.cellTopLabel.font = [UIFont systemFontOfSize:12.0f];
+    self.cellTopLabel.textColor = [UIColor jsq_messageSendTimeColor];
 //    [UIColor lightGrayColor];
     
     self.textView.delegate = self;

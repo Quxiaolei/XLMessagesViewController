@@ -43,15 +43,27 @@
                                      value:linkURL
                                      range:[[attributedString string] rangeOfString:linkText]];
         }
-        message_hz = [[JSQMessage_xl alloc] initWithSenderId:senderId senderDisplayName:displayName date:messageDate text:text attributedText:attributedString buttonCount:buttonContentArray.count];
+        message_hz = [[JSQMessage_xl alloc] initWithSenderId:senderId
+                                           senderDisplayName:displayName
+                                                        date:messageDate
+                                                        text:text
+                                              attributedText:attributedString
+                                              hyperlinkArray:hyperlinkArray
+                                          buttonContentArray:buttonContentArray];
         message_hz.attributedString = attributedString;
     }else{
-        message_hz = [[JSQMessage_xl alloc] initWithSenderId:senderId senderDisplayName:displayName date:messageDate text:text attributedText:nil buttonCount:buttonContentArray.count];
+        message_hz = [[JSQMessage_xl alloc] initWithSenderId:senderId
+                                           senderDisplayName:displayName
+                                                        date:messageDate
+                                                        text:text
+                                              attributedText:nil
+                                              hyperlinkArray:hyperlinkArray
+                                          buttonContentArray:buttonContentArray];
         message_hz.attributedString = nil;
     }
     
-    message_hz.hyperlinkArray     = hyperlinkArray;
-    message_hz.buttonContentArray = buttonContentArray;
+//    message_hz.hyperlinkArray     = hyperlinkArray;
+//    message_hz.buttonContentArray = buttonContentArray;
     return message_hz;
 }
 

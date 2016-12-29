@@ -23,6 +23,20 @@
 #pragma mark - Message bubble colors
 
 /**
+ @return message消息中发送时间文本字体颜色
+ */
++(UIColor *)jsq_messageSendTimeColor;
+/**
+ @return message消息中文本内容字体颜色
+ */
++ (UIColor *)jsq_messageContentColor;
+
+/**
+ @return message消息中超链内容字体颜色
+ */
++ (UIColor *)jsq_messageContentLinkColor;
+
+/**
  *  @return A color object containing HSB values similar to the iOS 7 messages app green bubble color.
  */
 + (UIColor *)jsq_messageBubbleGreenColor;

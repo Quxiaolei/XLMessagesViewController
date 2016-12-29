@@ -19,6 +19,8 @@
 #import <Foundation/Foundation.h>
 
 #import "JSQMessageMediaData.h"
+#import "JSQHyperlinkData.h"
+#import "JSQButtonData.h"
 
 /**
  *  The `JSQMessageData` protocol defines the common interface through which 
@@ -75,11 +77,22 @@
 
 
 /**
- <#Description#>
-
- @return <#return value description#>
+ 
+ @return 按钮类型数量
  */
 - (NSInteger)buttonCount;
+
+/**
+ 
+ @return 按钮类型数组
+ */
+- (NSArray<JSQHyperlinkData *> *)hyperlinkArray;
+
+/**
+ 
+ @return 超链类型数组
+ */
+- (NSArray<JSQButtonData *> *)buttonContentArray;
 /**
  *  @return An integer that can be used as a table address in a hash table structure.
  *

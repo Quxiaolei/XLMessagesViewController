@@ -661,7 +661,18 @@ JSQMessagesKeyboardControllerDelegate>
         for (int i = 0; i < array.count; i++) {
             UIButton *button = (UIButton *)[cell viewWithTag:i+100];
             button.hidden = NO;
-            [button setTitle:array[i] forState:UIControlStateNormal];
+            NSString *title = array[i];
+            if([title containsString:@"→"]){
+                NSMutableAttributedString *mutableTitle = [[NSMutableAttributedString alloc] initWithString:title];
+                [mutableTitle addAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:19.0f]} range:[title rangeOfString:@"→"]];
+                [mutableTitle addAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} range:NSMakeRange(0, title.length)];
+                [mutableTitle addAttribute:NSBaselineOffsetAttributeName value:@(0.36 * (19.0f - collectionView.collectionViewLayout.messageBubbleFont.pointSize)) range:NSMakeRange(0, title.length - 1)];
+                [button setAttributedTitle:mutableTitle forState:UIControlStateNormal];
+                button.titleLabel.textAlignment = NSTextAlignmentCenter;
+            }else{
+                [button setTitle:title forState:UIControlStateNormal];
+                [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            }
         }
     }
     
